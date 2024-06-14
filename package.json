@@ -1,0 +1,30 @@
+{
+  "name": "file-upload-backend",
+  "version": "1.0.0",
+  "description": "Node.js Application to demonstrate file handling in backend ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ronak-Surve/File-Handler-For-Backend.git"
+  },
+  "keywords": [
+    "mutler",
+    "cloudinary"
+  ],
+  "author": "Ronak-Surve",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ronak-Surve/File-Handler-For-Backend/issues"
+  },
+  "homepage": "https://github.com/Ronak-Surve/File-Handler-For-Backend#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "path": "^0.12.7"
+  }
+}
