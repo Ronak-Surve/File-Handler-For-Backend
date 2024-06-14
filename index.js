@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const path = require("path");
 const multer  = require('multer');
+const uploadFileToCloud = require("./services/cloudinaryService");
+const fs = require("fs");
 
 const app = express();
 
@@ -30,6 +32,14 @@ app.post("/upload", upload.single("profileImage"), (req,res) =>  {
 
         console.log(req.file);
         console.log(req.body);
+
+        const filePath = `./uploads/${req.file.fileName}`;
+        uploadFileToCloud(filePath);
+
+        fs.unlink(filePath , (err) => {
+            if (err) throw err;
+            console.log('path/file.txt was deleted');
+          }); 
 
         return res.redirect("/");
 });
