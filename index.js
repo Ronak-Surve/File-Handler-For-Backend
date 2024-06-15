@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const path = require("path");
 const multer  = require('multer');
-const uploadFileToCloud = require("./services/cloudinaryService");
+const {uploadFileToCloud} = require("./middlewares/cloudMiddleware");
 const fs = require("fs");
 
 const app = express();
@@ -28,17 +28,15 @@ app.get("/", (req,res) => {
     return res.render("home");
 });
 
-app.post("/upload", upload.single("profileImage"), (req,res) =>  {
+app.post("/upload", upload.single("profileImage"), uploadFileToCloud, (req,res) =>  {
 
         console.log(req.file);
         console.log(req.body);
 
-        const filePath = `./uploads/${req.file.fileName}`;
-        uploadFileToCloud(filePath);
-
+        const filePath = `./uploads/${req.file.filename}`;
         fs.unlink(filePath , (err) => {
             if (err) throw err;
-            console.log('path/file.txt was deleted');
+            console.log(`${req.file.filename} was deleted`);
           }); 
 
         return res.redirect("/");
